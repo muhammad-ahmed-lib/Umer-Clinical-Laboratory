@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>عمر کلینیکل لیبارٹری</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<title>عمر کلینیکل لیبارٹری | Umar Clinical Laboratory</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
@@ -13,6 +13,40 @@ body{
   background:#f4f8ff;
   color:#1a1a2e;
   direction:rtl;
+  transition: all 0.2s ease;
+}
+body.lang-en {
+  direction: ltr;
+  font-family: 'Inter', 'Noto Nastaliq Urdu', sans-serif;
+}
+body.lang-en .nav-links a,
+body.lang-en .hero-badge,
+body.lang-en .hero h2,
+body.lang-en .hero p,
+body.lang-en .btn-primary,
+body.lang-en .btn-secondary,
+body.lang-en .section-header h2,
+body.lang-en .section-header p,
+body.lang-en .service-card h3,
+body.lang-en .service-card p,
+body.lang-en .home-service h2,
+body.lang-en .home-service p,
+body.lang-en .step p,
+body.lang-en .test-item span,
+body.lang-en .team-card h3,
+body.lang-en .team-card .role,
+body.lang-en .team-card p,
+body.lang-en .contact-card h3,
+body.lang-en .contact-card p,
+body.lang-en .contact-card a,
+body.lang-en .order-form h3,
+body.lang-en .order-form label,
+body.lang-en .form-group input,
+body.lang-en .form-group select,
+body.lang-en .form-group textarea,
+body.lang-en .form-submit,
+body.lang-en footer p {
+  font-family: 'Inter', sans-serif;
 }
 
 /* ─── NAVBAR ─── */
@@ -41,6 +75,7 @@ nav{
 }
 .nav-links{
   display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;
+  align-items: center;
 }
 .nav-links a{
   color:white;text-decoration:none;
@@ -55,6 +90,21 @@ nav{
   font-weight:600 !important;
 }
 .nav-contact-btn:hover{background:#c0001f !important;}
+.lang-switch {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: inherit;
+}
+.lang-switch:hover {
+  background: rgba(255,255,255,0.3);
+}
 
 /* ─── HERO ─── */
 .hero{
@@ -185,7 +235,7 @@ section{padding:70px 30px}
   color:white;padding:20px 16px 14px;font-size:14px;font-weight:500;
 }
 
-/* ─── DOCTOR / MANAGEMENT ─── */
+/* ─── TEAM ─── */
 .team-grid{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;
   max-width:800px;margin:0 auto;
@@ -238,6 +288,9 @@ section{padding:70px 30px}
   background:rgba(255,255,255,0.08);color:white;font-family:inherit;font-size:14px;
   direction:rtl;
 }
+body.lang-en .form-group input,
+body.lang-en .form-group select,
+body.lang-en .form-group textarea { direction: ltr; }
 .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.4)}
 .form-group textarea{resize:vertical;min-height:90px}
 .form-submit{
@@ -265,7 +318,6 @@ footer strong{color:white}
 }
 @keyframes pulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.5)}50%{box-shadow:0 4px 36px rgba(37,211,102,0.8)}}
 
-/* ─── RESPONSIVE ─── */
 @media(max-width:600px){
   nav{padding:12px 16px}
   section{padding:50px 16px}
@@ -274,306 +326,133 @@ footer strong{color:white}
 }
 </style>
 </head>
-<body>
+<body dir="rtl">
+<a class="whatsapp-float" href="https://wa.me/923009670822" target="_blank" title="WhatsApp">💬</a>
 
-<!-- WhatsApp Float -->
-<a class="whatsapp-float" href="https://wa.me/923009670822" target="_blank" title="واٹس ایپ پر رابطہ کریں">💬</a>
-
-<!-- ─── NAVBAR ─── -->
 <nav>
   <div class="nav-logo">
     <div class="logo-icon">🔬</div>
     <div class="nav-logo-text">
-      <h1>عمر کلینیکل لیبارٹری</h1>
-      <p>Diagnosis with Excellence</p>
+      <h1 id="labNameUrdu">عمر کلینیکل لیبارٹری</h1>
+      <h1 id="labNameEn" style="display:none;">Umar Clinical Laboratory</h1>
+      <p id="taglineUrdu">Diagnosis with Excellence</p>
+      <p id="taglineEn" style="display:none;">Accurate Diagnosis | Trusted Care</p>
     </div>
   </div>
   <div class="nav-links">
-    <a href="#services">خدمات</a>
-    <a href="#tests">ٹیسٹ</a>
-    <a href="#gallery">گیلری</a>
-    <a href="#team">ٹیم</a>
-    <a href="#contact" class="nav-contact-btn">📞 رابطہ</a>
+    <a id="navServicesUr" href="#services">خدمات</a>
+    <a id="navServicesEn" href="#services" style="display:none;">Services</a>
+    <a id="navTestsUr" href="#tests">ٹیسٹ</a>
+    <a id="navTestsEn" href="#tests" style="display:none;">Tests</a>
+    <a id="navGalleryUr" href="#gallery">گیلری</a>
+    <a id="navGalleryEn" href="#gallery" style="display:none;">Gallery</a>
+    <a id="navTeamUr" href="#team">ٹیم</a>
+    <a id="navTeamEn" href="#team" style="display:none;">Team</a>
+    <a id="navContactUr" href="#contact" class="nav-contact-btn">📞 رابطہ</a>
+    <a id="navContactEn" href="#contact" class="nav-contact-btn" style="display:none;">📞 Contact</a>
+    <button class="lang-switch" id="langToggle">🇬🇧 English</button>
   </div>
 </nav>
 
-<!-- ─── HERO ─── -->
 <div class="hero">
-  <div class="hero-badge">✅ PHC-REG.NO.R-58164 · رجسٹرڈ لیبارٹری</div>
-  <h2>عمر کلینیکل لیبارٹری<br/>آپ کی صحت، ہماری ذمہ داری</h2>
-  <p>جدید ترین آلات کے ساتھ درست تشخیص · گھر پر سیمپل کی سہولت<br/>رپورٹ کلینک تک پہنچانے کی خدمت · ڈاکٹر کی زیرِ نگرانی</p>
+  <div class="hero-badge" id="heroBadgeUr">✅ PHC-REG.NO.R-58164 · رجسٹرڈ لیبارٹری</div>
+  <div class="hero-badge" id="heroBadgeEn" style="display:none;">✅ PHC-REG.NO.R-58164 · Registered Laboratory</div>
+  <h2 id="heroTitleUr">عمر کلینیکل لیبارٹری<br/>آپ کی صحت، ہماری ذمہ داری</h2>
+  <h2 id="heroTitleEn" style="display:none;">Umar Clinical Laboratory<br/>Your Health, Our Priority</h2>
+  <p id="heroDescUr">جدید ترین آلات کے ساتھ درست تشخیص · گھر پر سیمپل کی سہولت<br/>رپورٹ کلینک تک پہنچانے کی خدمت · ڈاکٹر کی زیرِ نگرانی</p>
+  <p id="heroDescEn" style="display:none;">Accurate diagnostics with modern equipment · Home sample collection<br/>Report delivery to clinic · Under doctor's supervision</p>
   <div class="hero-btns">
-    <a href="https://wa.me/923009670822" class="btn-primary" target="_blank">📱 ابھی آرڈر دیں</a>
-    <a href="#services" class="btn-secondary">ہماری خدمات دیکھیں</a>
+    <a href="https://wa.me/923009670822" class="btn-primary" target="_blank" id="orderNowUr">📱 ابھی آرڈر دیں</a>
+    <a href="https://wa.me/923009670822" class="btn-primary" target="_blank" id="orderNowEn" style="display:none;">📱 Order Now</a>
+    <a href="#services" class="btn-secondary" id="viewServicesUr">ہماری خدمات دیکھیں</a>
+    <a href="#services" class="btn-secondary" id="viewServicesEn" style="display:none;">View Services</a>
   </div>
   <div class="hero-stats">
-    <div class="stat-box">
-      <h3>+۵۰</h3>
-      <p>مختلف ٹیسٹ</p>
-    </div>
-    <div class="stat-box">
-      <h3>۲۴/۷</h3>
-      <p>دستیاب خدمات</p>
-    </div>
-    <div class="stat-box">
-      <h3>۱۰۰٪</h3>
-      <p>قابلِ اعتماد نتائج</p>
-    </div>
-    <div class="stat-box">
-      <h3>🏠</h3>
-      <p>گھر پر سیمپل</p>
-    </div>
+    <div class="stat-box"><h3>+۵۰</h3><p id="statTestUr">مختلف ٹیسٹ</p><p id="statTestEn" style="display:none;">Tests</p></div>
+    <div class="stat-box"><h3>۲۴/۷</h3><p id="statAvailUr">دستیاب خدمات</p><p id="statAvailEn" style="display:none;">Available</p></div>
+    <div class="stat-box"><h3>۱۰۰٪</h3><p id="statAccUr">قابلِ اعتماد نتائج</p><p id="statAccEn" style="display:none;">Reliable</p></div>
+    <div class="stat-box"><h3>🏠</h3><p id="statHomeUr">گھر پر سیمپل</p><p id="statHomeEn" style="display:none;">Home Sample</p></div>
   </div>
 </div>
 
-<!-- ─── SERVICES ─── -->
-<section id="services">
-  <div class="section-header">
-    <h2>ہماری خدمات</h2>
-    <p>ہم آپ کو ہر قسم کی لیبارٹری خدمات فراہم کرتے ہیں</p>
-    <div class="underline"></div>
-  </div>
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="icon icon-blue">🩸</div>
-      <h3>ہیماٹولوجی</h3>
-      <p>خون کے ٹیسٹ، CBC، بلڈ گروپ اور دیگر خون کے معائنے جدید Sysmex مشین سے</p>
-    </div>
-    <div class="service-card">
-      <div class="icon icon-red">🧪</div>
-      <h3>بائیو کیمسٹری</h3>
-      <p>شوگر، کولیسٹرول، جگر کے ٹیسٹ، گردے کے ٹیسٹ اور دیگر کیمیائی معائنے</p>
-    </div>
-    <div class="service-card">
-      <div class="icon icon-green">🔬</div>
-      <h3>مائیکرو بائیولوجی</h3>
-      <p>جراثیم کی تحقیق، پیشاب کا کلچر، گلے کا کلچر اور دیگر حیاتیاتی ٹیسٹ</p>
-    </div>
-    <div class="service-card">
-      <div class="icon icon-orange">🏠</div>
-      <h3>گھر پر سیمپل</h3>
-      <p>آپ کے گھر سے سیمپل لیا جاتا ہے، لیبارٹری میں ٹیسٹ ہوتا ہے اور رپورٹ گھر یا کلینک پہنچائی جاتی ہے</p>
-    </div>
-    <div class="service-card">
-      <div class="icon icon-purple">🏥</div>
-      <h3>کلینک سروس</h3>
-      <p>کلینک سے سیمپل اٹھایا جاتا ہے، ٹیسٹ کیا جاتا ہے اور رپورٹ کلینک واپس پہنچائی جاتی ہے</p>
-    </div>
-    <div class="service-card">
-      <div class="icon icon-teal">📋</div>
-      <h3>فوری رپورٹ</h3>
-      <p>زیادہ تر ٹیسٹوں کی رپورٹ اسی دن تیار ہو جاتی ہے۔ واٹس ایپ پر بھی بھیجنے کی سہولت</p>
-    </div>
-  </div>
+<!-- rest of content with bilingual IDs - same structure but dynamic text handled by JS -->
+<section id="services"><div class="section-header"><h2 id="servicesTitleUr">ہماری خدمات</h2><h2 id="servicesTitleEn" style="display:none;">Our Services</h2><p id="servicesSubUr">ہم آپ کو ہر قسم کی لیبارٹری خدمات فراہم کرتے ہیں</p><p id="servicesSubEn" style="display:none;">We provide all kinds of laboratory services</p><div class="underline"></div></div>
+<div class="services-grid" id="servicesGrid"></div></section>
+
+<section style="background:#f0f4ff;padding:70px 30px" id="homeServiceBlock">
+  <div class="home-service"><div><h2 id="homeTitleUr">🏠 گھر پر سیمپل کی سہولت</h2><h2 id="homeTitleEn" style="display:none;">🏠 Home Sample Collection</h2><p id="homeDescUr">اب آپ کو لیبارٹری آنے کی ضرورت نہیں! ہماری ٹیم آپ کے گھر آ کر سیمپل لیتی ہے، ٹیسٹ کرتی ہے اور رپورٹ آپ تک پہنچاتی ہے۔ کلینک کے لیے بھی یہی خدمت دستیاب ہے۔</p><p id="homeDescEn" style="display:none;">No need to visit the lab! Our team collects samples at your home, performs tests, and delivers reports. Same service for clinics.</p><a href="https://wa.me/923009670822" class="btn-primary" target="_blank" id="homeBtnUr">📱 ابھی بک کریں</a><a href="https://wa.me/923009670822" class="btn-primary" target="_blank" id="homeBtnEn" style="display:none;">📱 Book Now</a></div><div class="home-steps"><div class="step"><div class="step-num">۱</div><p id="step1Ur">واٹس ایپ یا فون پر رابطہ کریں اور وقت بتائیں</p><p id="step1En" style="display:none;">Contact via WhatsApp or phone, tell us your time</p></div><div class="step"><div class="step-num">۲</div><p id="step2Ur">ہماری ٹیم آپ کے گھر یا کلینک پہنچتی ہے</p><p id="step2En" style="display:none;">Our team arrives at your home or clinic</p></div><div class="step"><div class="step-num">۳</div><p id="step3Ur">سیمپل لیا جاتا ہے اور لیبارٹری میں ٹیسٹ ہوتا ہے</p><p id="step3En" style="display:none;">Sample is collected and tested in the lab</p></div><div class="step"><div class="step-num">۴</div><p id="step4Ur">رپورٹ آپ کے گھر یا کلینک پہنچا دی جاتی ہے</p><p id="step4En" style="display:none;">Report is delivered to your home or clinic</p></div></div></div>
 </section>
 
-<!-- ─── HOME SERVICE ─── -->
-<section style="background:#f0f4ff;padding:70px 30px">
-  <div class="home-service">
-    <div>
-      <h2>🏠 گھر پر سیمپل کی سہولت</h2>
-      <p>اب آپ کو لیبارٹری آنے کی ضرورت نہیں! ہماری ٹیم آپ کے گھر آ کر سیمپل لیتی ہے، ٹیسٹ کرتی ہے اور رپورٹ آپ تک پہنچاتی ہے۔ کلینک کے لیے بھی یہی خدمت دستیاب ہے۔</p>
-      <a href="https://wa.me/923009670822" class="btn-primary" target="_blank">📱 ابھی بک کریں</a>
-    </div>
-    <div class="home-steps">
-      <div class="step">
-        <div class="step-num">۱</div>
-        <p>واٹس ایپ یا فون پر رابطہ کریں اور وقت بتائیں</p>
-      </div>
-      <div class="step">
-        <div class="step-num">۲</div>
-        <p>ہماری ٹیم آپ کے گھر یا کلینک پہنچتی ہے</p>
-      </div>
-      <div class="step">
-        <div class="step-num">۳</div>
-        <p>سیمپل لیا جاتا ہے اور لیبارٹری میں ٹیسٹ ہوتا ہے</p>
-      </div>
-      <div class="step">
-        <div class="step-num">۴</div>
-        <p>رپورٹ آپ کے گھر یا کلینک پہنچا دی جاتی ہے</p>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="tests-section" id="tests"><div class="section-header"><h2 id="testsTitleUr">ہمارے ٹیسٹ</h2><h2 id="testsTitleEn" style="display:none;">Our Tests</h2><p id="testsSubUr">ہم درج ذیل تمام ٹیسٹ کرتے ہیں</p><p id="testsSubEn" style="display:none;">We perform all the following tests</p><div class="underline"></div></div><div class="tests-grid" id="testsList"></div></section>
 
-<!-- ─── TESTS ─── -->
-<section class="tests-section" id="tests">
-  <div class="section-header">
-    <h2>ہمارے ٹیسٹ</h2>
-    <p>ہم درج ذیل تمام ٹیسٹ کرتے ہیں</p>
-    <div class="underline"></div>
-  </div>
-  <div class="tests-grid">
-    <div class="test-item"><div class="test-dot"></div><span>مکمل خون کا معائنہ (CBC)</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>بلڈ شوگر (فاسٹنگ / رینڈم)</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>HbA1c (شوگر کنٹرول)</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>جگر کے ٹیسٹ (LFTs)</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>گردے کے ٹیسٹ (RFTs)</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>کولیسٹرول / لیپڈ پروفائل</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>تھائرائڈ ٹیسٹ (TSH, T3, T4)</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>ہیپاٹائٹس B اور C</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>ٹائیفائڈ ٹیسٹ (Widal)</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>پیشاب کا معائنہ (Urine R/E)</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>پیشاب کا کلچر</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>خون کا گروپ</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>ملیریا پیراسائٹ</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>ڈینگی NS1 / IgG / IgM</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>پاخانے کا معائنہ (Stool R/E)</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>ESR</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>پروٹین / البیومن</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>کریٹینین / یوریا</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>یورک ایسڈ</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>آئرن / فیریٹین</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>وٹامن D / B12</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>حمل کا ٹیسٹ (Pregnancy)</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>خون کا جمنے کا وقت (BT/CT)</span></div>
-    <div class="test-item"><div class="test-dot"></div><span>کلچر اور سینسیٹیوٹی</span></div>
-  </div>
-</section>
+<section id="gallery"><div class="section-header"><h2 id="galleryTitleUr">لیبارٹری کی جھلکیاں</h2><h2 id="galleryTitleEn" style="display:none;">Lab Gallery</h2><p id="gallerySubUr">ہماری جدید سہولیات اور آلات دیکھیں</p><p id="gallerySubEn" style="display:none;">View our modern facilities and equipment</p><div class="underline"></div></div><div class="gallery-grid"><div class="gallery-card"><img src="front.png" alt="front"><div class="caption" id="cap1Ur">🏥 عمر کلینیکل لیبارٹری · رحیم یار خان</div><div class="caption" id="cap1En" style="display:none;">🏥 Umar Clinical Lab · Rahim Yar Khan</div></div><div class="gallery-card"><img src="reception.png" alt="reception"><div class="caption" id="cap2Ur">📋 ریسیپشن اور فلیبوٹومی</div><div class="caption" id="cap2En" style="display:none;">📋 Reception & Phlebotomy</div></div><div class="gallery-card"><img src="lab.png" alt="lab"><div class="caption" id="cap3Ur">🔬 ہیماٹولوجی · بائیو کیمسٹری · لیبارٹری</div><div class="caption" id="cap3En" style="display:none;">🔬 Hematology · Biochemistry · Lab</div></div></div></section>
 
-<!-- ─── GALLERY ─── -->
-<section id="gallery">
-  <div class="section-header">
-    <h2>لیبارٹری کی جھلکیاں</h2>
-    <p>ہماری جدید سہولیات اور آلات دیکھیں</p>
-    <div class="underline"></div>
-  </div>
-  <div class="gallery-grid">
-    <div class="gallery-card">
-      <img src="front.png" alt="عمر کلینیکل لیبارٹری باہر سے"/>
-      <div class="caption">🏥 عمر کلینیکل لیبارٹری · رحیم یار خان</div>
-    </div>
-    <div class="gallery-card">
-      <img src="reception.png" alt="ریسیپشن"/>
-      <div class="caption">📋 ریسیپشن اور فلیبوٹومی</div>
-    </div>
-    <div class="gallery-card">
-      <img src="lab.png" alt="لیبارٹری"/>
-      <div class="caption">🔬 ہیماٹولوجی · بائیو کیمسٹری · لیبارٹری</div>
-    </div>
-  </div>
-</section>
+<section id="team" style="background:#f0f4ff"><div class="section-header"><h2 id="teamTitleUr">ہماری ٹیم</h2><h2 id="teamTitleEn" style="display:none;">Our Team</h2><p id="teamSubUr">تجربہ کار ڈاکٹر اور مینجمنٹ کی زیرِ نگرانی</p><p id="teamSubEn" style="display:none;">Under supervision of experienced doctor & management</p><div class="underline"></div></div><div class="team-grid"><div class="team-card"><div class="team-avatar">👨‍⚕️</div><h3>ڈاکٹر محمد عمران شوکت</h3><span class="role" id="role1Ur">پیتھالوجسٹ</span><span class="role" id="role1En" style="display:none;">Pathologist</span><p id="docDescUr">ایم بی بی ایس، ایم فل (مائیکرو بائیولوجی)<br/>کنسلٹنٹ پیتھالوجسٹ<br/>شیخ زید میڈیکل کالج اسپتال، رحیم یار خان</p><p id="docDescEn" style="display:none;">MBBS, M.Phil (Microbiology)<br/>Consultant Pathologist<br/>Sheikh Zayed Medical College Hospital</p></div><div class="team-card"><div class="team-avatar">👨‍💼</div><h3>یوسف رحمانی</h3><span class="role" id="role2Ur">مینیجر / رابطہ</span><span class="role" id="role2En" style="display:none;">Manager / Contact</span><p id="managerDescUr">لیبارٹری مینجمنٹ<br/>آنلائن آرڈر اور رابطے کے لیے<br/>واٹس ایپ: 03009670822</p><p id="managerDescEn" style="display:none;">Lab Management<br/>Online orders & coordination<br/>WhatsApp: 03009670822</p></div></div></section>
 
-<!-- ─── TEAM ─── -->
-<section id="team" style="background:#f0f4ff">
-  <div class="section-header">
-    <h2>ہماری ٹیم</h2>
-    <p>تجربہ کار ڈاکٹر اور مینجمنٹ کی زیرِ نگرانی</p>
-    <div class="underline"></div>
-  </div>
-  <div class="team-grid">
-    <div class="team-card">
-      <div class="team-avatar">👨‍⚕️</div>
-      <h3>ڈاکٹر محمد عمران شوکت</h3>
-      <span class="role">پیتھالوجسٹ</span>
-      <p>
-        ایم بی بی ایس، ایم فل (مائیکرو بائیولوجی)<br/>
-        کنسلٹنٹ پیتھالوجسٹ<br/>
-        شیخ زید میڈیکل کالج اسپتال، رحیم یار خان
-      </p>
-    </div>
-    <div class="team-card">
-      <div class="team-avatar">👨‍💼</div>
-      <h3>یوسف رحمانی</h3>
-      <span class="role">مینیجر / رابطہ</span>
-      <p>
-        لیبارٹری مینجمنٹ<br/>
-        آنلائن آرڈر اور رابطے کے لیے<br/>
-        واٹس ایپ: 03009670822
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ─── CONTACT ─── -->
-<section class="contact-section" id="contact">
-  <div class="section-header">
-    <h2>رابطہ کریں</h2>
-    <p>آنلائن آرڈر یا کسی بھی سوال کے لیے ابھی رابطہ کریں</p>
-    <div class="underline"></div>
-  </div>
-  <div class="contact-grid">
-    <div class="contact-card">
-      <div class="contact-icon">📞</div>
-      <h3>فون / واٹس ایپ</h3>
-      <a href="tel:03009670822">0300-9670822</a>
-      <p style="margin-top:8px">یوسف رحمانی</p>
-    </div>
-    <div class="contact-card">
-      <div class="contact-icon">💬</div>
-      <h3>واٹس ایپ پر میسج</h3>
-      <a href="https://wa.me/923009670822" target="_blank">ابھی میسج کریں</a>
-      <p style="margin-top:8px">فوری جواب ملتا ہے</p>
-    </div>
-    <div class="contact-card">
-      <div class="contact-icon">⏰</div>
-      <h3>اوقاتِ کار</h3>
-      <p>صبح ۸ بجے سے<br/>رات ۱۰ بجے تک<br/>ہفتے کے ساتوں دن</p>
-    </div>
-    <div class="contact-card">
-      <div class="contact-icon">📍</div>
-      <h3>پتہ</h3>
-      <p>عمر کلینیکل لیبارٹری<br/>رحیم یار خان، پاکستان</p>
-    </div>
-  </div>
-
-  <!-- Online Order Form -->
-  <div class="order-form">
-    <h3>📋 آنلائن ٹیسٹ آرڈر</h3>
-    <div class="form-group">
-      <label>آپ کا نام</label>
-      <input type="text" placeholder="اپنا نام لکھیں"/>
-    </div>
-    <div class="form-group">
-      <label>موبائل نمبر</label>
-      <input type="tel" placeholder="03XX-XXXXXXX"/>
-    </div>
-    <div class="form-group">
-      <label>پتہ</label>
-      <input type="text" placeholder="اپنا پتہ لکھیں"/>
-    </div>
-    <div class="form-group">
-      <label>سروس کی قسم</label>
-      <select>
-        <option>گھر پر سیمپل</option>
-        <option>کلینک سروس</option>
-        <option>لیبارٹری آ کر ٹیسٹ</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>مطلوبہ ٹیسٹ</label>
-      <textarea placeholder="ٹیسٹ کا نام لکھیں جیسے CBC، شوگر، وغیرہ"></textarea>
-    </div>
-    <button class="form-submit" onclick="submitOrder()">📤 واٹس ایپ پر آرڈر بھیجیں</button>
-  </div>
-</section>
-
-<!-- ─── FOOTER ─── -->
-<footer>
-  <p><strong>عمر کلینیکل لیبارٹری</strong> · رحیم یار خان، پاکستان</p>
-  <p>📞 <a href="tel:03009670822" style="color:#ffd700">0300-9670822</a> · یوسف رحمانی</p>
-  <p>PHC-REG.NO.R-58164 · © ۲۰۲۵ تمام حقوق محفوظ ہیں</p>
-</footer>
-
+<section class="contact-section" id="contact"><div class="section-header"><h2 id="contactTitleUr">رابطہ کریں</h2><h2 id="contactTitleEn" style="display:none;">Contact Us</h2><p id="contactSubUr">آنلائن آرڈر یا کسی بھی سوال کے لیے ابھی رابطہ کریں</p><p id="contactSubEn" style="display:none;">Contact us now for online orders or any query</p><div class="underline"></div></div><div class="contact-grid"><div class="contact-card"><div class="contact-icon">📞</div><h3 id="cPhoneUr">فون / واٹس ایپ</h3><h3 id="cPhoneEn" style="display:none;">Phone / WhatsApp</h3><a href="tel:03009670822">0300-9670822</a><p style="margin-top:8px">یوسف رحمانی</p></div><div class="contact-card"><div class="contact-icon">💬</div><h3 id="cWhatsUr">واٹس ایپ پر میسج</h3><h3 id="cWhatsEn" style="display:none;">Message on WhatsApp</h3><a href="https://wa.me/923009670822" target="_blank" id="whatsLinkUr">ابھی میسج کریں</a><a href="https://wa.me/923009670822" target="_blank" id="whatsLinkEn" style="display:none;">Message Now</a><p style="margin-top:8px">فوری جواب ملتا ہے</p></div><div class="contact-card"><div class="contact-icon">⏰</div><h3 id="cHoursUr">اوقاتِ کار</h3><h3 id="cHoursEn" style="display:none;">Working Hours</h3><p id="hoursUr">صبح ۸ بجے سے<br/>رات ۱۰ بجے تک<br/>ہفتے کے ساتوں دن</p><p id="hoursEn" style="display:none;">8:00 AM to 10:00 PM<br/>All week days</p></div><div class="contact-card"><div class="contact-icon">📍</div><h3 id="cAddrUr">پتہ</h3><h3 id="cAddrEn" style="display:none;">Address</h3><p>عمر کلینیکل لیبارٹری<br/>رحیم یار خان، پاکستان</p></div></div>
+<div class="order-form"><h3 id="formTitleUr">📋 آنلائن ٹیسٹ آرڈر</h3><h3 id="formTitleEn" style="display:none;">📋 Online Test Order</h3>
+<div class="form-group"><label id="nameLabelUr">آپ کا نام</label><label id="nameLabelEn" style="display:none;">Your Name</label><input type="text" id="userName" placeholder="اپنا نام لکھیں"/></div>
+<div class="form-group"><label id="mobileLabelUr">موبائل نمبر</label><label id="mobileLabelEn" style="display:none;">Mobile Number</label><input type="tel" id="userPhone" placeholder="03XX-XXXXXXX"/></div>
+<div class="form-group"><label id="addressLabelUr">پتہ</label><label id="addressLabelEn" style="display:none;">Address</label><input type="text" id="userAddress" placeholder="اپنا پتہ لکھیں"/></div>
+<div class="form-group"><label id="serviceLabelUr">سروس کی قسم</label><label id="serviceLabelEn" style="display:none;">Service Type</label><select id="serviceType"><option>گھر پر سیمپل</option><option>کلینک سروس</option><option>لیبارٹری آ کر ٹیسٹ</option></select></div>
+<div class="form-group"><label id="testLabelUr">مطلوبہ ٹیسٹ</label><label id="testLabelEn" style="display:none;">Required Tests</label><textarea id="testReq" placeholder="ٹیسٹ کا نام لکھیں جیسے CBC، شوگر، وغیرہ"></textarea></div>
+<button class="form-submit" onclick="submitOrder()" id="orderBtnUr">📤 واٹس ایپ پر آرڈر بھیجیں</button><button class="form-submit" onclick="submitOrder()" id="orderBtnEn" style="display:none;">📤 Send Order on WhatsApp</button>
+</div></section>
+<footer><p><strong id="footerNameUr">عمر کلینیکل لیبارٹری</strong><strong id="footerNameEn" style="display:none;">Umar Clinical Laboratory</strong> · رحیم یار خان، پاکستان</p><p>📞 <a href="tel:03009670822" style="color:#ffd700">0300-9670822</a> · یوسف رحمانی</p><p>PHC-REG.NO.R-58164 · © ۲۰۲۵ تمام حقوق محفوظ ہیں</p></footer>
 <script>
-function submitOrder(){
-  const name=document.querySelectorAll('input')[0].value||'نہیں بتایا';
-  const phone=document.querySelectorAll('input')[1].value||'نہیں بتایا';
-  const address=document.querySelectorAll('input')[2].value||'نہیں بتایا';
-  const service=document.querySelector('select').value;
-  const tests=document.querySelector('textarea').value||'نہیں بتایا';
-  const msg=`🔬 *عمر کلینیکل لیبارٹری - آنلائن آرڈر*\n\n👤 نام: ${name}\n📞 موبائل: ${phone}\n📍 پتہ: ${address}\n🏷️ سروس: ${service}\n🧪 ٹیسٹ: ${tests}`;
-  window.open('https://wa.me/923009670822?text='+encodeURIComponent(msg),'_blank');
-}
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    e.preventDefault();
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t)t.scrollIntoView({behavior:'smooth'});
+  const testsList = ["مکمل خون کا معائنہ (CBC)","بلڈ شوگر (فاسٹنگ / رینڈم)","HbA1c (شوگر کنٹرول)","جگر کے ٹیسٹ (LFTs)","گردے کے ٹیسٹ (RFTs)","کولیسٹرول / لیپڈ پروفائل","تھائرائڈ ٹیسٹ (TSH, T3, T4)","ہیپاٹائٹس B اور C","ٹائیفائڈ ٹیسٹ (Widal)","پیشاب کا معائنہ (Urine R/E)","پیشاب کا کلچر","خون کا گروپ","ملیریا پیراسائٹ","ڈینگی NS1 / IgG / IgM","پاخانے کا معائنہ (Stool R/E)","ESR","پروٹین / البیومن","کریٹینین / یوریا","یورک ایسڈ","آئرن / فیریٹین","وٹامن D / B12","حمل کا ٹیسٹ (Pregnancy)","خون کا جمنے کا وقت (BT/CT)","کلچر اور سینسیٹیوٹی"];
+  const servicesData = [{icon:"🩸",titleUr:"ہیماٹولوجی",titleEn:"Hematology",descUr:"خون کے ٹیسٹ، CBC، بلڈ گروپ اور دیگر خون کے معائنے جدید Sysmex مشین سے",descEn:"Blood tests, CBC, Blood group & more using advanced Sysmex"},{icon:"🧪",titleUr:"بائیو کیمسٹری",titleEn:"Biochemistry",descUr:"شوگر، کولیسٹرول، جگر کے ٹیسٹ، گردے کے ٹیسٹ اور دیگر کیمیائی معائنے",descEn:"Sugar, cholesterol, liver & kidney function tests"},{icon:"🔬",titleUr:"مائیکرو بائیولوجی",titleEn:"Microbiology",descUr:"جراثیم کی تحقیق، پیشاب کا کلچر، گلے کا کلچر اور دیگر حیاتیاتی ٹیسٹ",descEn:"Bacterial culture, urine culture, throat swab & more"},{icon:"🏠",titleUr:"گھر پر سیمپل",titleEn:"Home Sample",descUr:"آپ کے گھر سے سیمپل لیا جاتا ہے، لیبارٹری میں ٹیسٹ ہوتا ہے اور رپورٹ گھر یا کلینک پہنچائی جاتی ہے",descEn:"Sample collected from home, tested in lab, report delivered"},{icon:"🏥",titleUr:"کلینک سروس",titleEn:"Clinic Service",descUr:"کلینک سے سیمپل اٹھایا جاتا ہے، ٹیسٹ کیا جاتا ہے اور رپورٹ کلینک واپس پہنچائی جاتی ہے",descEn:"Sample picked from clinic, tested, report returned to clinic"},{icon:"📋",titleUr:"فوری رپورٹ",titleEn:"Fast Reports",descUr:"زیادہ تر ٹیسٹوں کی رپورٹ اسی دن تیار ہو جاتی ہے۔ واٹس ایپ پر بھی بھیجنے کی سہولت",descEn:"Most reports ready same day, also sent via WhatsApp"}];
+  function buildServices(lang){
+    const grid=document.getElementById('servicesGrid');
+    grid.innerHTML=servicesData.map(s=>`<div class="service-card"><div class="icon ${s.icon==='🩸'?'icon-blue':s.icon==='🧪'?'icon-red':s.icon==='🔬'?'icon-green':s.icon==='🏠'?'icon-orange':s.icon==='🏥'?'icon-purple':'icon-teal'}">${s.icon}</div><h3>${lang==='ur'?s.titleUr:s.titleEn}</h3><p>${lang==='ur'?s.descUr:s.descEn}</p></div>`).join('');
+  }
+  function buildTests(lang){
+    const grid=document.getElementById('testsList');
+    grid.innerHTML=testsList.map(t=>`<div class="test-item"><div class="test-dot"></div><span>${t}</span></div>`).join('');
+  }
+  let currentLang='ur';
+  function toggleLanguage(){
+    currentLang=currentLang==='ur'?'en':'ur';
+    document.body.classList.toggle('lang-en', currentLang==='en');
+    document.documentElement.lang=currentLang==='ur'?'ur':'en';
+    document.documentElement.dir=currentLang==='ur'?'rtl':'ltr';
+    const els=['labName','tagline','navServices','navTests','navGallery','navTeam','navContact','heroBadge','heroTitle','heroDesc','orderNow','viewServices','statTest','statAvail','statAcc','statHome','servicesTitle','servicesSub','homeTitle','homeDesc','homeBtn','step1','step2','step3','step4','testsTitle','testsSub','galleryTitle','gallerySub','cap1','cap2','cap3','teamTitle','teamSub','role1','role2','docDesc','managerDesc','contactTitle','contactSub','cPhone','cWhats','whatsLink','cHours','hours','cAddr','formTitle','nameLabel','mobileLabel','addressLabel','serviceLabel','testLabel','orderBtn','footerName'];
+    els.forEach(id=>{
+      const urEl=document.getElementById(id+'Ur');
+      const enEl=document.getElementById(id+'En');
+      if(urEl && enEl){
+        if(currentLang==='ur'){ urEl.style.display=''; enEl.style.display='none';}
+        else{ urEl.style.display='none'; enEl.style.display='';}
+      }
+    });
+    buildServices(currentLang);
+    buildTests(currentLang);
+    const selectService=document.getElementById('serviceType');
+    if(selectService){
+      if(currentLang==='ur'){ selectService.innerHTML='<option>گھر پر سیمپل</option><option>کلینک سروس</option><option>لیبارٹری آ کر ٹیسٹ</option>';}
+      else{ selectService.innerHTML='<option>Home Sample</option><option>Clinic Service</option><option>Visit Lab</option>';}
+    }
+    document.getElementById('langToggle').innerText=currentLang==='ur'?'🇬🇧 English':'🇵🇰 اردو';
+  }
+  function submitOrder(){
+    const name=document.getElementById('userName').value||'Not provided';
+    const phone=document.getElementById('userPhone').value||'Not provided';
+    const address=document.getElementById('userAddress').value||'Not provided';
+    const service=document.getElementById('serviceType').value;
+    const tests=document.getElementById('testReq').value||'Not provided';
+    const msg=`🔬 *Umar Clinical Laboratory Order*\n👤 Name: ${name}\n📞 Phone: ${phone}\n📍 Address: ${address}\n🏷️ Service: ${service}\n🧪 Tests: ${tests}`;
+    window.open('https://wa.me/923009670822?text='+encodeURIComponent(msg),'_blank');
+  }
+  window.toggleLanguage=toggleLanguage;
+  document.getElementById('langToggle').addEventListener('click',toggleLanguage);
+  buildServices('ur');
+  buildTests('ur');
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const href=a.getAttribute('href');
+      if(href && href!=='#'){ e.preventDefault(); const t=document.querySelector(href); if(t) t.scrollIntoView({behavior:'smooth'});}
+    });
   });
-});
 </script>
 </body>
 </html>
